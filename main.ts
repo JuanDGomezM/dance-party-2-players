@@ -115,7 +115,7 @@ game.onUpdateInterval(5000, function () {
     speed += 1
 })
 game.onUpdateInterval(4000, function () {
-    lane = randint(1, 8)
+    lane = randint(1, 4)
     if (lane == 1) {
         left = sprites.create(img`
             . . . . . . . . . . . . . . . . 
