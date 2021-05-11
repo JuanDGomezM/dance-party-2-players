@@ -64,16 +64,15 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     steve.setPosition(50, 100)
 })
 info.onLifeZero(function () {
-    game.over(true, effects.confetti)
+    steve.destroy(effects.disintegrate, 500)
+    vidaequipo += -1
 })
 controller.player2.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pressed, function () {
     Aurora.setPosition(90, 100)
 })
-info.player1.onLifeZero(function () {
-    steve.destroy(effects.disintegrate, 500)
-})
 info.player2.onLifeZero(function () {
-    steve.destroy(effects.disintegrate, 500)
+    Aurora.destroy(effects.disintegrate, 500)
+    vidaequipo += -1
 })
 function player2 () {
     Aurora = sprites.create(img`
@@ -98,6 +97,7 @@ function player2 () {
     info.player2.setLife(5)
     info.player2.setScore(0)
 }
+let lane2 = 0
 let right: Sprite = null
 let down: Sprite = null
 let up: Sprite = null
@@ -111,6 +111,7 @@ tiles.setTilemap(tilemap`level`)
 let speed = 20
 player2()
 player1()
+let vidaequipo = 2
 game.onUpdateInterval(5000, function () {
     speed += 1
 })
@@ -201,14 +202,14 @@ game.onUpdateInterval(4000, function () {
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             `, SpriteKind.Projectile)
-        right.setPosition(150, 8)
+        right.setPosition(70, 8)
         right.say("DERECHA")
         right.setVelocity(0, speed)
     }
 })
 game.onUpdateInterval(4000, function () {
-    lane = randint(5, 8)
-    if (lane == 5) {
+    lane2 = randint(5, 8)
+    if (lane2 == 5) {
         left = sprites.create(img`
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
@@ -227,10 +228,10 @@ game.onUpdateInterval(4000, function () {
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             `, SpriteKind.Projectile)
-        left.setPosition(10, 8)
+        left.setPosition(90, 8)
         left.say("IZQUIERDA")
         left.setVelocity(0, speed)
-    } else if (lane == 6) {
+    } else if (lane2 == 6) {
         up = sprites.create(img`
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
@@ -249,10 +250,10 @@ game.onUpdateInterval(4000, function () {
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             `, SpriteKind.Projectile)
-        up.setPosition(30, 8)
+        up.setPosition(110, 8)
         up.say("ARRIBA")
         up.setVelocity(0, speed)
-    } else if (lane == 7) {
+    } else if (lane2 == 7) {
         down = sprites.create(img`
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
@@ -271,10 +272,10 @@ game.onUpdateInterval(4000, function () {
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             `, SpriteKind.Projectile)
-        down.setPosition(50, 8)
+        down.setPosition(130, 8)
         down.say("ABAJO")
         down.setVelocity(0, speed)
-    } else if (lane == 8) {
+    } else if (lane2 == 8) {
         right = sprites.create(img`
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
@@ -296,5 +297,10 @@ game.onUpdateInterval(4000, function () {
         right.setPosition(150, 8)
         right.say("DERECHA")
         right.setVelocity(0, speed)
+    }
+})
+forever(function () {
+    if (true) {
+    	
     }
 })
